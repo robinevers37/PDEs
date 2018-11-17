@@ -71,7 +71,7 @@
 	\end{equation}
 	\item[Sol.] We start by rewriting the shallow water equations as in (4) to one vectorial equation
 	\[\partial_t\vec{u}+\partial_x \vec{f}(\vec{u})=0\]
-	where $\vec{u}=(\phi,v)$ and $\vec{f}=(v\phi,\frac{v^2}{2}+\phi)$. The total derivative of $f$ is given by
+	where $\vec{u}=(\phi,v)$ and $\vec{f}=(v\phi,\frac{v^2}{2}+\phi)$. The Jacobian of $f$ is given by
 	\begin{align*}
 		D\vec{f}=\begin{pmatrix}
 		\frac{\partial f_1}{\partial \phi}	& \frac{\partial f_1}{\partial v}\\
@@ -93,16 +93,62 @@
 	\[\phi \frac{\partial^2 \eta}{\partial \phi^2}	+ v  \frac{\partial^2 \eta}{\partial v \partial \phi} =  v  \frac{\partial^2 \eta}{\partial v \partial \phi} + \frac{\partial^2 \eta}{\partial v^2}.\]
 	By subtracting $v  \frac{\partial^2 \eta}{\partial v \partial \phi}$ from both sides we find the requested equality for our entropy $\eta$
 	\newpage
-	\item[3.]
+	\item[3.]The Barotropic compressible Euler equations are given when the internal energy
+	of the system is constant. The equations are given by conservation of mass and momentum
 	\begin{equation}
 	\begin{split}
 		\rho_t +(\rho v)_x &= 0\\
 		(\rho v)_t + \left(\rho v^2 + p\right)_x &= 0,
 	\end{split}
 	\end{equation}
+	with $p = p(\rho)$ for a smooth function $p$. Assume $p'(\rho)>0$ then show that
+	\begin{equation}
+	\eta(\rho,\rho v)= \frac12 \rho v^2 + P(\rho)
+	\end{equation}
+	is an entropy when $P''(\rho) = \frac{p'(\rho)}{\rho}$ for $\rho >0$. What is the associated entropy flux?
 	\item[Sol.]We start by rewriting the Euler equations as in (5) to one vectorial equation
 	\[\partial_t\vec{u}+\partial_x \vec{f}(\vec{u})=0\]
-	where $\vec{u}=(\rho, \rho v)$ and $\vec{f}=(\rho v,\rho v^2 + p)$. 
+	where $\vec{u}=(\rho, \rho v)$ and $\vec{f}(y,z)=(z,\frac{z^2}{y}+p(y))$. 
+	The Jacobian of $f$ is given by
+	\begin{align*}
+	D\vec{f}=\begin{pmatrix}
+	\frac{\partial f_1}{\partial y}	& \frac{\partial f_1}{\partial z}\\
+	\frac{\partial f_2}{\partial y}	& \frac{\partial f_2}{\partial z}\end{pmatrix}
+	=\begin{pmatrix}
+	0	& 1\\
+	p'(y) - (\frac{z}{y})^2	& \frac{2z}{y}
+	\end{pmatrix}.
+	\end{align*}
+	We write $\eta$ as a function of variables $y, z$ as $\eta(y,z)=\frac{z^2}{2y}+P(y)$. The Jacobian of $\eta$ is given by
+	\begin{align*}
+	D\eta=\begin{pmatrix}
+	\frac{\eta}{\partial y}	,& \frac{\partial \eta}{\partial z}\end{pmatrix}
+	=\begin{pmatrix}
+	\frac{-z^2}{2y^2} + P'(y)	,& \frac{z}{y}
+	\end{pmatrix}.
+	\end{align*}
+	A pair $(\eta,q)$ is an entropy/entropy flux pair associated with (5) if $Dq=D\eta D\vec{f}$.
+	If $\eta$ as defined in (6) is an entropy, we find that the entropy flux $q$ must satisfy
+	\begin{align*}
+			Dq=D\eta D\vec{f}&=\begin{pmatrix}
+			\frac{-z^2}{2y^2} + P'(y)	,& \frac{z}{y}
+			\end{pmatrix} \begin{pmatrix}
+		0	& 1\\
+		p'(y) - (\frac{z}{y})^2	& \frac{2z}{y}
+		\end{pmatrix}\\
+		&=\begin{pmatrix}
+		\frac{zp'(y)}{y} - (\frac{z}{y})^3	,& \frac{3z^2}{2y^2}+P'(y).
+		\end{pmatrix}\\
+	\end{align*}
+	Hence the partial derivative of $q$ to $z$ has to be
+	\[\frac{\partial q}{\partial z} = \frac{3z^2}{2y^2}+P'(y) = \frac{3}{2y^2} z^2 + P'(y),\]
+	which means $q$ has to be of the form
+	\[q=\frac{1}{2y^2}z^3+P'(y)z + C(y).\]
+	where $C$ is independent of $z$. We derive this to $y$ to find
+	\[\frac{\partial q}{\partial y} = -\left(\frac{z}{y}\right)^3 + P''(y)z + C'(y). \]
+	This equals the expression we found for $Dq$ if $P''(y) = \frac{p'(y)}{y}$ and $C'(y)=0$. Therefore $\eta(\rho, \rho v)$ is an entropy when $P''(\rho) = \frac{p'(\rho)}{\rho}$ for $\rho>0$, the associated entropy flux is given by 
+	\[q=\frac{(\rho v)^3}{2\rho^2}+P'(\rho)\rho v + C = \frac{\rho v^3}{2} + P'(\rho)\rho v + C,\]
+	where $C$ is independent of $\rho$ and $v$.
 	\newpage
 	\item[4.]
 	Consider the following partial differential equation (PDE)
