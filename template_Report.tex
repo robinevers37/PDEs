@@ -1,0 +1,145 @@
+\documentclass[]{report}
+\usepackage{a4wide}
+\usepackage{amsmath}
+
+
+% Title Page
+\title{PDEs assignment}
+\author{Robin Evers}
+
+
+\begin{document}
+\maketitle
+\begin{itemize}
+	\item[1.] Draw the characteristics for the following equations and write the general solution.
+	\begin{align}
+		u_t + 7u_x &= 0\\
+		u_t - 2u_x + 3u &= 0.
+	\end{align}
+	\item[Sol.] To find characteristics, we solve the ODE
+	\begin{align*}
+		x'(t)&=7\\
+		x(0)&=x_0.
+	\end{align*} 
+	This gives us the characteristic curves $x(t)$ defined by 
+	\[x(t)=x_0+7t.\]
+	On these curves we have
+	\begin{align*}
+	\frac{d}{dt}u(x(t),t)&=(u(x(t),t))_t+(x(t))_t(u(x(t)),t)_x\\
+	&=(u(x(t),t))_t+7(u(x(t)),t)_x\\
+	&=0.
+	\end{align*}
+	This means that solutions $u(x(t),t)$ to (1) are constant on these characteristic curves $x(t)$, hence the general solution to (1) is given by
+	\[u(x(t),t)=u(x_0,0)=u(x(t)-7t,0).\]
+	\item[Sol.] To find characteristics, we solve the ODE
+	\begin{align*}
+	x'(t)&=-2\\
+	x(0)&=x_0.
+	\end{align*} 
+	This gives us the characteristic curves $x(t)$ defined by 
+	\[x(t)=x_0-2t.\]
+	On these curves we have
+	\begin{align*}
+	\frac{d}{dt}u(x(t),t)&=(u(x(t),t))_t+(x(t))_t(u(x(t)),t)_x\\
+	&=(u(x(t),t))_t-2(u(x(t)),t)_x\\
+	&=-3u(x(t),t).
+	\end{align*}
+	Hence
+	\[\frac{d}{dt}u(x(t),t)+3u(x(t),t)=0.\]
+	This gives us the ODE
+	\begin{align*}
+		u_t+3u&=0\\
+		u(x(0),0)&=u_0(x_0).
+	\end{align*} 
+	We multiply the ODE by $e^{3t}$ to get
+	\[\frac{d}{dt}ue^{3t}=u_te^{3t}+3ue^{3t}=0.\]
+	This means that $ue^{3t}$ is constant on $x(t)$, so
+	\[e^{3t}u(x(t),t)=e^0u(x(0),0)=u_0(x_0)\]
+	hence the general solution to (2) is given by
+	\[u(x(t),t)=e^{-3t}u_0(x_0)=e^{-3t}u_0(x(t)+2t).\]
+	\item[2.] Let $g$ be the gravitational constant and $h : \mathbf{R} \times \mathbf{R}^{+}$ be the height of a fluid, define $\phi = gh$. Further, let $v : \mathbf{R} \times \mathbf{R}^{+}$ be the horizontal velocity. The shallow water equations are
+	given by
+	\begin{equation}
+	\begin{split}
+		\phi_t +(v\phi)_x &= 0\\
+		v_t + \left(\frac{v^2}{2}+\phi\right)_x&=0.
+	\end{split}
+	\end{equation}
+	Let $\eta = \eta(\phi, v)$ be an entropy for the shallow water equations. Prove that it must satisfy
+	\begin{equation}
+		\frac{\partial^2\eta}{\partial v^2} = \phi \frac{\partial^2\eta}{\partial\phi^2}.
+	\end{equation}
+	\item[Sol.] We start by rewriting the shallow water equations as in (4) to one vectorial equation
+	\[\partial_t\vec{u}+\partial_x \vec{f}(\vec{u})=0\]
+	where $\vec{u}=(\phi,v)$ and $\vec{f}=(v\phi,\frac{v^2}{2}+\phi)$. The total derivative of $f$ is given by
+	\begin{align*}
+		D\vec{f}=\begin{pmatrix}
+		\frac{\partial f_1}{\partial \phi}	& \frac{\partial f_1}{\partial v}\\
+		\frac{\partial f_2}{\partial \phi}	& \frac{\partial f_2}{\partial v}\end{pmatrix}
+		=\begin{pmatrix}
+		v	& \phi\\
+		1	& v
+		\end{pmatrix}.
+	\end{align*}
+	Let $\eta = \eta(\phi, v)$ be an entropy for the shallow water equations, the matrix of second derivatives of $\eta$ is given by
+	\begin{align*}
+	D^2\eta=\begin{pmatrix}
+	\frac{\partial^2 \eta}{\partial \phi^2}	& \frac{\partial^2 \eta}{\partial \phi \partial v}\\
+	\frac{\partial^2 \eta}{\partial v \partial \phi}	& \frac{\partial^2  \eta}{\partial v^2}\end{pmatrix}.
+	\end{align*}
+	Since $\eta$ is an entropy for the shallow water equations, we have
+	\[(D\vec{f})^T D^2\eta = D^2 \eta D\vec{f}.\]
+	This gives us four equations, the equation given by the second row, first column is
+	\[\phi \frac{\partial^2 \eta}{\partial \phi^2}	+ v  \frac{\partial^2 \eta}{\partial v \partial \phi} =  v  \frac{\partial^2 \eta}{\partial v \partial \phi} + \frac{\partial^2 \eta}{\partial v^2}.\]
+	By subtracting $v  \frac{\partial^2 \eta}{\partial v \partial \phi}$ from both sides we find the requested equality for our entropy $\eta$
+	\newpage
+	\item[3.]
+	\begin{equation}
+	\begin{split}
+		\rho_t +(\rho v)_x &= 0\\
+		(\rho v)_t + \left(\rho v^2 + p\right)_x &= 0,
+	\end{split}
+	\end{equation}
+	\item[Sol.]We start by rewriting the Euler equations as in (5) to one vectorial equation
+	\[\partial_t\vec{u}+\partial_x \vec{f}(\vec{u})=0\]
+	where $\vec{u}=(\rho, \rho v)$ and $\vec{f}=(\rho v,\rho v^2 + p)$. 
+	\newpage
+	\item[4.]
+	Consider the following partial differential equation (PDE)
+	\begin{equation}
+	u_t + u_{xxx} + 6uu_x = 0, u = u(x, t)
+	\end{equation}
+	known as the Korteweg-de Vries equation (or KdV) and which describes water waves in shallow waters.
+	\begin{itemize}
+		\item[(a)] Consider a scaling transformation, on both the independent and dependent
+		variables, of the form
+		\begin{equation}
+		S : (t, x, u) \mapsto (T, X, U) = (at, bx, cu)
+		\end{equation}
+		where $a, b$ and $c$ are nonzero constants. Find conditions for the parameters $a, b$ and $c$
+		such that the transformation $S$ is a symmetry transformation of the KdV equation. Use the obtained symmetry to deduce that if $u = f(x, t)$ is a solution of the KdV equation then $u = \epsilon^2f(\epsilon x, \epsilon^3 t)$ is also a solution for all nonzero $\epsilon$.
+		\item[Sol.] The PDE given in (6) admits the symmetry if, given a solution $u = f(x, t)$, the transformed function \[\tilde{u} = \tilde{f}(\tilde{x},\tilde{t})=cf(bx,at)\] 
+		is also a solution of the same PDE, i.e.
+		\begin{equation}
+			\tilde{u}_{\tilde{t}} + \tilde{u}_{\tilde{x}\tilde{x}\tilde{x}} + 6\tilde{u}\tilde{u}_{\tilde{x}} = 0.
+		\end{equation}
+		To find $a,b,c$ for which this is true, we first calculate the transformed derivatives
+		\[\frac{\partial}{\partial\tilde{t}}\tilde{u}(\tilde{x},\tilde{u})=\frac{dt}{d\tilde{t}}\frac{\partial}{\partial t}cu(x,t)=\frac{c}{a}\frac{\partial}{\partial t} u(x,t),\]
+		
+		\[\frac{\partial}{\partial\tilde{x}}\tilde{u}(\tilde{x},\tilde{u})=\frac{dx}{d\tilde{x}}\frac{\partial}{\partial x}cu(x,t)=\frac{c}{b}\frac{\partial}{\partial x} u(x,t),\]
+		and similarly
+		\[\frac{\partial^2}{\partial\tilde{x}^2}\tilde{u}(\tilde{x},\tilde{t})=\frac{c}{b^2}\frac{\partial^2}{\partial x}u(x,t),\]
+		\[\frac{\partial^3}{\partial\tilde{x}^2}\tilde{u}(\tilde{x},\tilde{t})=\frac{c}{b^3}\frac{\partial^3}{\partial x}u(x,t).\]
+		Hence, if we substitute to the left hand side of (8) we obtain
+		\[\frac{c}{a}\frac{\partial}{\partial t} u(x,t)+\frac{c}{b^3}\frac{\partial^3}{\partial x}u(x,t) + \frac{6c^2}{b}u(x,t)\frac{\partial}{\partial x} u(x,t)=0\]
+		when
+		\[\frac{c}{a}=\frac{c}{b^3}=\frac{c^2}{b}.\]
+		Since we assume $a,b,c$ nonnegative, this holds when $a=b^3$ and $c=b^2$. Let us fix $b=\epsilon$ for any nonnegative $\epsilon$, then 
+		\[\tilde{u} = cf(bx,at) = \epsilon^2f(\epsilon x, \epsilon^3)\]
+		is also a solution to (6). 
+		\item[(b)]
+	\end{itemize}
+
+\end{itemize}
+
+\end{document}          
