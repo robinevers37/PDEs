@@ -176,15 +176,80 @@
 		and similarly
 		\[\frac{\partial^2}{\partial\tilde{x}^2}\tilde{u}(\tilde{x},\tilde{t})=\frac{c}{b^2}\frac{\partial^2}{\partial x}u(x,t),\]
 		\[\frac{\partial^3}{\partial\tilde{x}^2}\tilde{u}(\tilde{x},\tilde{t})=\frac{c}{b^3}\frac{\partial^3}{\partial x}u(x,t).\]
-		Hence, if we substitute to the left hand side of (8) we obtain
+		Hence, if we substitute to the left hand side of (9) we obtain
 		\[\frac{c}{a}\frac{\partial}{\partial t} u(x,t)+\frac{c}{b^3}\frac{\partial^3}{\partial x}u(x,t) + \frac{6c^2}{b}u(x,t)\frac{\partial}{\partial x} u(x,t)=0\]
 		when
 		\[\frac{c}{a}=\frac{c}{b^3}=\frac{c^2}{b}.\]
-		Since we assume $a,b,c$ nonnegative, this holds when $a=b^3$ and $c=b^2$. Let us fix $b=\epsilon$ for any nonnegative $\epsilon$, then 
-		\[\tilde{u} = cf(bx,at) = \epsilon^2f(\epsilon x, \epsilon^3)\]
-		is also a solution to (6). 
-		\item[(b)]
+		Since we assume $a,b,c$ nonnegative, this holds when $a=b^3$ and $c=\frac{1}{b^2}$. Let us fix $b=\epsilon$ for any nonnegative $\epsilon$, then 
+		\[\tilde{u}(\tilde{x},\tilde{t}) = \epsilon^2f(\epsilon x, \epsilon^3)\]
+		is also a solution to (7). 
+		\item[(b)] Consider solutions of the KdV equation of the special form
+		\begin{equation}
+			u(x,t)=f(\xi), \ \ \  \xi(x,t)=x-vt
+		\end{equation}
+		where $v$ is a real constant and substitute it in (10). Such type of solutions are known as travelling wave solutions. Use the chain rule for partial derivatives to obtain an ordinary differential equation (ODE) for $f(\xi)$. It should look like
+		\begin{equation}
+			-vf(\xi)+3f(\xi)^2 +f''(\xi)-A=0 
+		\end{equation}
+		Can you solve the obtained differential equation?
+		\item[Sol.]  We are looking for solutions to
+		\[(f(\xi))_t + (f(\xi))_{xxx}+6f(\xi)(f(\xi))_x=0.\]
+		Note that $\xi_x=1$ and $\xi_t=-v$, therefore we can use the chain rule to obtain
+		\begin{align*}
+			0= (f(\xi))_t + (f(\xi))_{xxx}+6f(\xi)(f(\xi))_x &= -vf'(\xi)+(f'(\xi))_{xx}+6f(\xi)(f'(\xi))\\
+			&=-vf'(\xi)+(f''(\xi))_x+6f(\xi)(f'(\xi))\\
+			&=-vf'(\xi)+f'''(\xi)+6f(\xi)(f'(\xi))
+		\end{align*}
+		integrating over $\xi$ now gives the following ODE for $f(\xi)$
+		\begin{align*}
+			-vf(\xi)+f''(\xi)+3f(\xi)^2+A = 0
+		\end{align*}
+		for some constant $A$.
+		Multiplying this by $f'(\xi)$ gives
+		\[-vf(\xi)f'(\xi)+f''(\xi)f'(\xi)+3ff'(\xi)(\xi)^2+Af'(\xi) = 0.\]
+		We now integrate over $\xi$ again to obtain
+		\[\frac{-v}{2}f(\xi)^2 + \frac12 (f'(\xi))^2+f(\xi)^3+f(\xi)A+B=0\]
+		for some constant $B$. 
+		We introduce the variable $y$ and make a substitution of variables, $y(\xi)=\frac{-1}2f(\xi)+\frac{v}{12}$. Now $y'(\xi)=\frac{-1}{2}f'(\xi)$ and thus
+		\begin{align*}
+			(y'(\xi))^2 = \left(\frac12 f'(\xi)\right)^2 = \frac14 \left( f'(\xi)\right)^2 &=\frac{v}{4} f(\xi)^2-\frac12 f(\xi)^3-\frac12f(\xi)A-\frac12B.
+		\end{align*}
+		Hence
+		\begin{align*}
+			2(y'(\xi))^2 - \frac{v}{2}\left( -2y(\xi)+\frac{v}{6}\right) ^2+\left(- 2y(\xi)+\frac{v}{6}\right) ^3 +(-2y(\xi)+\frac{v}{6})A+B=0.
+		\end{align*}
+		We rewrite this to
+		\begin{align*}
+				0&= 2(y'(\xi))^2 -\frac{v}{2}\left( 4y(\xi)^2-\frac{2v}{3}y(\xi)+\frac{v^2}{36}\right) -8y(\xi)^3+
+				\frac{4v}{3}y(\xi)^2-\frac{v^2}{18}y(\xi)+\frac{2v}{3}y(\xi)^2-\frac{v^2}{9}y(\xi)\\
+				&\hspace{9cm}+\frac{v^3}{216}-2y(\xi)A + \frac{v}{6} A + B\\
+				&=2(y'(\xi))^2 + y(\xi)^2 \left( -2v+\frac{4v}{3} + \frac{2v}{3}\right) + y(\xi)\left( \frac{v^2}{3}-\frac{v^2}{18}-\frac{v^2}{9}-2A\right) - 8 y(\xi)^3 -\frac{v^3}{72} + \frac{v^3}{216}\\
+				&\hspace{12cm}  + \frac{vA}{6} +B\\
+				&=2(y'(\xi))^2  + y(\xi)\left(\frac{v^2}{6} - 2A \right) - 8 y(\xi)^3 -\frac{v^3}{108} + \frac{vA}{6} +B.
+		\end{align*}
+		Dividing by 2 gives us 
+		\[y'(\xi)^2 = 4y(\xi)^3+ g_2 y(\xi) +g_3\]
+		where
+		\[g_2 = A-\frac{v^2}{12}, \ \ \ \ g_3= \frac{v^3}{216}-\frac{vA}{12}-\frac{B}{2}.\]
+		We can solve for $\xi$ as this is the differential equation satisfied by Weierstrass’s $\wp$-function. Substituting back into $f(\xi)=-2y(\xi)+\frac{v}{6}$ solves the differential equation.
+		\item[c.] Apply the symmetry argument of part (a) to the travelling wave form (10) to deduce that higher amplitude waves travel faster. This is a purely nonlinear effect, can you explain this? This shows that even when an exact solution cannot be found, we can still find properties of the solutions by studying the symmetries of the equation.
+		\item[Sol.] To obtain a higher amplitude wave the parameter $\epsilon$ in our transformation becomes larger. For $\epsilon>1$, the wave speed, which is given by $\epsilon^2v$, thus becomes smaller when $v<0$ and greater when $v>0$. Therefore the waves must travel faster when we have higher amplitude. 
+		
+		This is purely nonlinear as in linear theory, we would assume the wave amplitudes to be sufficiently small to ignore contributions of nonlinear terms, (i.e. terms of second order and higher) in wave amplitude. In the linear case it therefore suffices to consider only one Fourier component at a time, which leads to the ability of expressing the general solutions by an appropriate superposition of Fourier components. 
+		
+		When wave amplitudes become larger, linear theory would predict exponential growth of unstable waves, but nonlinear effects cause saturation and limit the wave amplitude at a finite level and therefore the ability to find properties of the solutions when exact solutions cannot be found.
+		\item[d.] Verify that the quantities
+		\begin{equation}
+			x^2u, \text{ and } x^3t^{-1}
+		\end{equation}
+		are invariant under the symmetry obtained in part (a). Deduce that the general form of those solutions of the KdV equation which are invariant under the scaling symmetry is
+		\begin{equation}
+			u(x, t) = \frac{1}{x^2}f(\xi), \ \ \ \ \xi(x, t) = x^3t^{-1}. 
+		\end{equation}
+		Using again the chain rule obtain an ODE for $f(\xi)$. Try to find simple special solutions for the obtained ODE and then find the corresponding solutions for the KdV equation. For example, start with the assumption that $f(\xi)$ is a constant function. Can you find a rational solution $f(\xi)$?
+		\item[Sol.]
 	\end{itemize}
+	
 
 \end{itemize}
 
